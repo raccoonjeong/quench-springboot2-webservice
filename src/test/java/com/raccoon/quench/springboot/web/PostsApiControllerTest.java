@@ -41,7 +41,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    public void Posts_µî·ÏµÈ´Ù() throws Exception {
+    public void Posts_ë“±ë¡ëœë‹¤() throws Exception {
         // given
         String title = "title";
         String content ="content";
@@ -68,7 +68,7 @@ public class PostsApiControllerTest {
     }
 
     @Test
-    public void Posts_¼öÁ¤µÈ´Ù() throws Exception {
+    public void Posts_ìˆ˜ì •ëœë‹¤() throws Exception {
         // given
         Posts savedPosts = postsRepository.save(Posts.builder()
                 .title("title")

@@ -20,7 +20,7 @@ public class HelloControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void hello∞°_∏Æ≈œµ»¥Ÿ() throws Exception {
+    public void helloÍ∞Ä_Î¶¨ÌÑ¥ÎêúÎã§() throws Exception {
         String hello = "hello";
 
         mvc.perform(get("/hello"))
@@ -28,7 +28,7 @@ public class HelloControllerTest {
                 .andExpect(content().string(hello));
     }
     @Test
-    public void helloDto∞°_∏Æ≈œµ»¥Ÿ() throws Exception {
+    public void helloDtoÍ∞Ä_Î¶¨ÌÑ¥ÎêúÎã§() throws Exception {
         String name = "hello";
         int amount = 1000;
 

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class HelloResponseDtoTest {
     @Test
-    public void ·Òº¹_±â´É_Å×½ºÆ®() {
+    public void ë¡¬ë³µ_ê¸°ëŠ¥_í…ŒìŠ¤íŠ¸() {
         //given
         String name = "test";
         int amount = 1000;

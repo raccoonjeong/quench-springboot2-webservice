@@ -25,10 +25,10 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void °Ô½Ã±ÛÀúÀå_ºÒ·¯¿À±â(){
-        // given
-        String title = "Å×½ºÆ® °Ô½Ã±Û";
-        String content = "Å×½ºÆ® º»¹®";
+    public void ê²Œì‹œê¸€ì €ì¥_ë¶ˆëŸ¬ì˜¤ê¸°() {
+        //given
+        String title = "í…ŒìŠ¤íŠ¸ ê²Œì‹œê¸€";
+        String content = "í…ŒìŠ¤íŠ¸ ë³¸ë¬¸";
 
         postsRepository.save(Posts.builder()
         .title(title)
@@ -46,7 +46,7 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void BaseTimeEntity_µî·Ï() {
+    public void BaseTimeEntity_ë“±ë¡() {
         // given
         LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
         postsRepository.save(Posts.builder()
