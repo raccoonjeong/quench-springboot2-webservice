@@ -1,13 +1,24 @@
 spring:
+  mustache:
+    suffix: .html
+---
+spring:
   jpa:
     show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
   h2:
     console:
       enabled: true
+
   mustache:
-    suffix: .html
+    # prefix: file:///E:\my\quench-springboot2-webservice\src\main\resources\templates
+    cache: false
+
+  resources:
+     # static-locations: file:///E:\my\quench-springboot2-webservice\src\main\resources\static
+
   profiles:
     include: oauth

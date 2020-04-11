@@ -1,5 +1,6 @@
 package com.raccoon.quench.springboot.web;
 
+import com.raccoon.quench.springboot.config.auth.dto.SessionUser;
 import com.raccoon.quench.springboot.service.PostsService;
 import com.raccoon.quench.springboot.web.dto.PostsResponseDto;
 import com.raccoon.quench.springboot.web.dto.PostsUpdateRequestDto;
@@ -11,15 +12,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpSession;
+
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if(user != null) {
+            model.addAttribute("userName", user.getName());
+        }
 
         return "index";
     }
