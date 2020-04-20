@@ -6,6 +6,8 @@ import com.raccoon.quench.springboot.service.PostsService;
 import com.raccoon.quench.springboot.web.dto.PostsResponseDto;
 import com.raccoon.quench.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +29,8 @@ public class IndexController {
         model.addAttribute("posts", postsService.findAllDesc());
 
         if(user != null) {
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("userRealName", user.getName());
         }
-
         return "index";
     }
 

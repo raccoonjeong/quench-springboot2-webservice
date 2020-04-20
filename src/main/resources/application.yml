@@ -14,11 +14,11 @@ spring:
       enabled: true
 
   mustache:
-    # prefix: file:///E:\my\quench-springboot2-webservice\src\main\resources\templates
+ #   prefix: classpath:\static\
     cache: false
 
   resources:
-     # static-locations: file:///E:\my\quench-springboot2-webservice\src\main\resources\static
+#      static-locations: file:///E:\my\quench-springboot2-webservice\src\main\resources\static
 
   profiles:
     include: oauth
