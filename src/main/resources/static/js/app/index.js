@@ -1,3 +1,5 @@
+import {cleanXSS} from './validation.js';
+
 var index = {
     init : function() {
         var _this = this;
@@ -18,6 +20,10 @@ var index = {
             content: $('#content').val()
         };
 
+        for(let key in data) {
+            data[key] = cleanXSS(data[key]);
+        }
+
         $.ajax({
             type: 'POST',
             url: '/api/v1/posts',
@@ -37,6 +43,10 @@ var index = {
             content: $('#content').val()
         };
         var id = $('#id').val();
+
+        for(let key in data) {
+            data[key] = cleanXSS(data[key]);
+        }
 
         $.ajax({
             type: 'PUT',
