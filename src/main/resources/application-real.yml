@@ -1,4 +1,6 @@
 spring:
+  mustache:
+    suffix: .html
   profiles:
     include: oauth, real-db
   jpa:
