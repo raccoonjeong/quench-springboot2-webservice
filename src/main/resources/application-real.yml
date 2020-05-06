@@ -7,3 +7,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   session:
     store-type: jdbc
+
+server:
+  tomcat:
+    basedir: .
+    accesslog:
+      pattern: '%{yyyy-MM-dd HH:mm:ss}t\t%s\t%r\t%{User-Agent}i\t%{Referer}i\t%a\t%b'
+      enabled: true
