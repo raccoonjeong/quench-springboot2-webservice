@@ -1,4 +1,5 @@
 import {cleanXSS} from './validation.js';
+import {consoleColorfulMessage} from './util/consoleColorfulMessage.js'
 
 var index = {
     init : function() {
@@ -12,6 +13,9 @@ var index = {
         $('#btn-delete').on('click', function() {
             _this.delete();
         });
+
+        consoleColorfulMessage('안녕하세요 \n 개발자 도구는 \n 왜 여시나요?');
+
     },
     save : function() {
         var data = {

@@ -17,15 +17,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**",
-                        "/js/**", "/h2-console/**").permitAll()
+                .antMatchers("/", "/css/**", "/img/**",
+                        "/js/**", "/h2-console/**", "/main").permitAll()
                 .antMatchers("/api/v1/**").hasRole(Role.GUEST.name())
                 .anyRequest().authenticated()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/main")
                 .and()
                 .oauth2Login()
+                .defaultSuccessUrl("/main")
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }

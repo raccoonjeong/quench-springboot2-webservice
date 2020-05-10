@@ -1,3 +1,16 @@
+
+
+
 .h1-welcome {
-    color: red;
+    position: relative;
+    animation: myAnimation 3s infinite;
+}
+@keyframes myAnimation {
+    0%   { color: red; }
+    25%  { color: coral; }
+    50%  { color: purple; }
+    75%  { color: blue; }
+    100%  { color: green; }
+
+
 }
