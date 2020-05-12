@@ -1,7 +1,7 @@
 import {consoleColorfulMessage} from './util/consoleColorfulMessage.js'
 
 window.onload = function (event) {
-    consoleColorfulMessage('이름은 빵이이');
+    consoleColorfulMessage('이름은 빵이');
 
     let hello = document.querySelector('.hello');
     let layer_before = document.querySelector('.before');
