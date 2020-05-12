@@ -1,14 +1,13 @@
 import {consoleColorfulMessage} from './util/consoleColorfulMessage.js'
 
 window.onload = function (event) {
-    consoleColorfulMessage('이름은 빵이이');
+    consoleColorfulMessage('이름은 빵이');
 
     let hello = document.querySelector('.hello');
     let layer_before = document.querySelector('.before');
     let layer_after = document.querySelector('.after');
 
     let intoMain = function () {
-        alert('환영합니다!');
         window.location.href = '/main';
     }
     hello.addEventListener('click', intoMain)
@@ -28,6 +27,7 @@ window.onload = function (event) {
             gameStart = true;
             layer_before.remove();
             layer_after.style = 'display: block';
+            draw();
         }
     }
 
@@ -65,15 +65,15 @@ window.onload = function (event) {
     lockImg = new Image();
     lockImg.src = '/img/lock60.png';
 
-    let drawKey = function() {
+    let drawKey = function () {
         ctx.beginPath();
         ctx.drawImage(keyImg, keyX, keyY, keyWidth, keyHeight);
         ctx.closePath();
     }
 
-    let dogChangeRightLeft = function() {
+    let dogChangeRightLeft = function () {
 
-        if(!dogGetKey) {
+        if (!dogGetKey) {
             if (!rightFlag && leftFlag) {
                 dogImg.src = '/img/pang_left60.png';
             } else if (rightFlag && !leftFlag) {
@@ -88,7 +88,7 @@ window.onload = function (event) {
         }
     }
 
-    let drawDog = function() {
+    let drawDog = function () {
         if (rightPressed) {
             dogX += 7;
             leftFlag = false;
@@ -110,7 +110,7 @@ window.onload = function (event) {
         ctx.closePath();
     }
 
-    let drawLock = function() {
+    let drawLock = function () {
         ctx.beginPath();
         ctx.drawImage(lockImg, lockX, lockY, lockWidth, lockHeight);
         ctx.closePath();
@@ -143,7 +143,7 @@ window.onload = function (event) {
         }
     }
 
-    let unlock = function() {
+    let unlock = function () {
         dogGetKey = false;
         unlockYn = true;
         dogWidth = 95;
@@ -159,51 +159,53 @@ window.onload = function (event) {
         window.removeEventListener("keydown", keyDownHandler, false);
         window.removeEventListener("keyup", keyUpHandler, false);
 
-        setTimeout(function() {
+        setTimeout(function () {
             lockImg.src = '/img/unlock60.png';
-        },600);
-        setTimeout(function() {
+        }, 600);
+        setTimeout(function () {
             stop();
             window.location.href = '/main';
-        },1200);
+        }, 1200);
     }
 
     let requestId;
     let draw = function () {
-        requestId = undefined;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawDog();
-        dogChangeRightLeft();
-        if(!dogGetKey && !unlockYn) {
-            drawKey();
-        }
-        drawLock();
-        start();
-
-        if(dogY < keyY + keyHeight && dogY >= keyY - keyHeight) {
-            if(dogX < keyX + keyWidth && dogX >= keyX - keyWidth ) {
-                dogGetKey = true;
-                dogWidth = 135;
+        if (gameStart) {
+            requestId = undefined;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawDog();
+            dogChangeRightLeft();
+            if (!dogGetKey && !unlockYn) {
+                drawKey();
             }
-        }
+            drawLock();
+            start();
 
-        if(dogGetKey) {
-            if(dogY < lockY + lockHeight && dogY >= lockY - lockHeight) {
-                if(dogX < lockX + lockWidth && dogX >= lockX - lockWidth ) {
-                    unlock();
+            if (dogY < keyY + keyHeight && dogY >= keyY - keyHeight) {
+                if (dogX < keyX + keyWidth && dogX >= keyX - keyWidth) {
+                    dogGetKey = true;
+                    dogWidth = 135;
+                }
+            }
+
+            if (dogGetKey) {
+                if (dogY < lockY + lockHeight && dogY >= lockY - lockHeight) {
+                    if (dogX < lockX + lockWidth && dogX >= lockX - lockWidth) {
+                        unlock();
+                    }
                 }
             }
         }
     }
 
 
-    let start = function() {
+    let start = function () {
         if (!requestId) {
             requestId = window.requestAnimationFrame(draw);
         }
     }
 
-    let stop = function() {
+    let stop = function () {
         if (requestId) {
             window.cancelAnimationFrame(requestId);
             requestId = undefined;
@@ -214,6 +216,16 @@ window.onload = function (event) {
 
     window.addEventListener("keydown", keyDownHandler, false);
     window.addEventListener("keyup", keyUpHandler, false);
+
+    // 브라우저 호환
+    window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function(callback) { window.setTimeout(callback, 1000 / 60); };
+    })();
 
 }
 
