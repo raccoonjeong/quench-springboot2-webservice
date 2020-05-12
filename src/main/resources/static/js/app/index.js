@@ -36,7 +36,7 @@ var index = {
             data: JSON.stringify(data)
         }).done(function () {
             alert('글이 등록되어따');
-            window.location.href = '/';
+            window.location.href = '/main';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
@@ -60,7 +60,7 @@ var index = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('글이 수정되어따');
-            window.location.href='/';
+            window.location.href='/main';
         }).fail(function(error) {
             alert(JSON.stringify(error));
         })
@@ -75,7 +75,7 @@ var index = {
             contentType: 'application/json; charset=utf-8'
         }).done(function() {
             alert('글이 삭제되었다ㅋㅋ');
-            window.location.href = '/';
+            window.location.href = '/main';
         }).fail(function(error) {
             alert(JSON.stringify(error));
         })

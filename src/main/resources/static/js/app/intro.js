@@ -40,13 +40,13 @@ window.onload = function (event) {
 
     let dogHeight = 100;
     let dogWidth = 95;
-    let dogX = (canvas.width - dogWidth) / 3;
-    let dogY = (canvas.height - dogHeight) / 3;
+    let dogX = (canvas.width - dogWidth) / 10;
+    let dogY = (canvas.height - dogHeight);
 
     let keyHeight = 100;
     let keyWidth = 95;
-    let keyX = (canvas.width / 3) * 2;
-    let keyY = (canvas.height / 3) * 2;
+    let keyX = (canvas.width / 2);
+    let keyY = (canvas.height / 3) - keyWidth;
 
     let lockHeight = 140;
     let lockWidth = 130;
@@ -65,13 +65,13 @@ window.onload = function (event) {
     lockImg = new Image();
     lockImg.src = '/img/lock60.png';
 
-    function drawKey() {
+    let drawKey = function() {
         ctx.beginPath();
         ctx.drawImage(keyImg, keyX, keyY, keyWidth, keyHeight);
         ctx.closePath();
     }
 
-    function dogChangeRightLeft() {
+    let dogChangeRightLeft = function() {
 
         if(!dogGetKey) {
             if (!rightFlag && leftFlag) {
@@ -88,7 +88,7 @@ window.onload = function (event) {
         }
     }
 
-    function drawDog() {
+    let drawDog = function() {
         if (rightPressed) {
             dogX += 7;
             leftFlag = false;
@@ -110,7 +110,7 @@ window.onload = function (event) {
         ctx.closePath();
     }
 
-    function drawLock() {
+    let drawLock = function() {
         ctx.beginPath();
         ctx.drawImage(lockImg, lockX, lockY, lockWidth, lockHeight);
         ctx.closePath();
@@ -161,15 +161,11 @@ window.onload = function (event) {
 
         setTimeout(function() {
             lockImg.src = '/img/unlock60.png';
-        },800);
+        },600);
         setTimeout(function() {
             stop();
             window.location.href = '/main';
-        },1600);
-
-
-
-
+        },1200);
     }
 
     let requestId;
@@ -191,26 +187,31 @@ window.onload = function (event) {
             }
         }
 
-        if(dogY < lockY + lockHeight && dogY >= lockY - lockHeight) {
-            if(dogX < lockX + lockWidth && dogX >= lockX - lockWidth ) {
-                unlock();
+        if(dogGetKey) {
+            if(dogY < lockY + lockHeight && dogY >= lockY - lockHeight) {
+                if(dogX < lockX + lockWidth && dogX >= lockX - lockWidth ) {
+                    unlock();
+                }
             }
         }
     }
-    start();
 
-    function start() {
+
+    let start = function() {
         if (!requestId) {
             requestId = window.requestAnimationFrame(draw);
         }
     }
 
-    function stop() {
+    let stop = function() {
         if (requestId) {
             window.cancelAnimationFrame(requestId);
             requestId = undefined;
         }
     }
+
+    start();
+
     window.addEventListener("keydown", keyDownHandler, false);
     window.addEventListener("keyup", keyUpHandler, false);
 
