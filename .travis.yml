@@ -24,7 +24,7 @@ notifications:
       - rana3782@gmail.com
 
 before_deploy:
-  - zip -r quench-springboot2-webservice*
+  - zip -r quench-springboot2-webservice *
   - mkdir -p deploy
   - mv quench-springboot2-webservice.zip deploy/quench-springboot2-webservice.zip
 
