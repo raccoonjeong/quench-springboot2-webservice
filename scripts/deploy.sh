@@ -1,5 +1,5 @@
 #!/bin/bash
-curl -X POST --data-urlencode 'payload={"text": "HS shell start"}' https://hooks.slack.com/services/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 > /dev/null 2>&1
+curl -X POST --data-urlencode 'payload={"text": "shell start"}' https://hooks.slack.com/services/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 > /dev/null 2>&1
 
 REPOSITORY=/home/ec2-user/app/step2
 PROJECT_NAME=quench-springboot2-webservice
